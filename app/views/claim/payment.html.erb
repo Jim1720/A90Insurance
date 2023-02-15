@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+
+<style>
+
+     body { background-color: black; }
+    .burleywood { color: burleywood}
+    .left { margin-left: 220px; }
+    .center { margin-left: 250px; }
+    .white { color: white; }
+    .txt { font-family: arial; font-size: large;}
+    .down { margin-top: 100px; }
+    .a2 { margin-left: 280px; margin-top: 25px; }
+    .r1 { border-radius: 10px; padding-left: 10px ; padding-right: 10px; }
+    .dodgerblue { color: dodgerblue; }
+    .left2 { margin-left: 195px; }
+
+
+</style>
+
+<body>
+
+ <form action="/payclaim" accept-charset="UTF-8" method="post"> 
+
+ <input name="_method" type="hidden" value="patch" />   
+
+<%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>
+
+ <div class="container">
+
+ <h1 class="left burleywood">Claim Payment</h1>  
+
+<div id="center">
+
+ <div class="form-group row"> 
+    <div class="col-xs-2 left down">
+         <label class="control-label dodgerblue txt" for="amount">Payment Amount:</label>
+         <input class="white txt form-control" type="text" name="payamount" id="payamount"> 
+   </div> 
+ </div> 
+
+ <div class="form-group row white txt left2">
+ <p>Enter Payment Amount for claim : <%= @claimIdNumber %>
+ </p>
+ </div>
+
+ <div class="form-group row">
+
+ 
+ <div class="form-group row"> 
+    <input class="btn-primary a2 txt r1" type="submit" name="commit" value="Pay"> 
+</div>
+
+ </div>
+
+ <div class="form-group row left2">
+      <label class="txt burleywood control-label"><%= @message %></label>
+</div> 
+
+ </div> <!-- center --> 
+
+ 
+ <div> 
+     <input type="hidden" name="claimIdNumber" id="claimIdNumber" value="<%= @claimIdNumber %>">  
+</div>
+
+ </div> <!-- container --> 
+
+</form>
+
+</body>
+ 
+  

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A90Insurance</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all'  %>
+    <%= javascript_include_tag 'application' %>
+    
+  </head>
+
+  
+  <!-- add include for links here --> 
+
+  <%= render "links" %> 
+
+  <!-- end of links -->
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

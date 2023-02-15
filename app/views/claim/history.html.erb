@@ -1,0 +1,580 @@
+
+<style>
+
+    
+    h1 { color: white; }
+
+    body { background-color: black; }  
+
+    #center { margin-left: 30%; margin-top: 50px; } 
+ 
+
+    .ba { color: white; background-color: dodgerblue; border-radius: 10px; padding: 5px;
+          font-family: arial: font-size: large; margin-top: 20px; margin-bottom: 20px; }
+
+          
+    .ba2 { color: white;  background-color: green; border-radius: 10px; padding: 5px;
+          font-family: arial: font-size: large; margin-top: 20px; margin-bottom: 20px; }
+    
+    .lit { color: white; font-family: arial; font-size: larger; margin-top: 20px; }
+
+    .ps { margin-left: 370px; margin-bottom: 50px; font-family: arial; font-size: x-large; }
+
+    .burleywood { color: burleywood; }
+
+    .white { color: white; }
+
+    .aqua { color: aqua; }
+
+    .space { margin-top: 10px; }
+
+    .blue { color: dodgerblue;}
+
+    .ft { font-size: larger; font-family: arial;}
+
+    .top { margin-top: 20px;}
+
+    .a1 { margin-left: 30px; }
+
+    .f1 { font-family: arial; font-size: larger;}
+
+    .btnrow { margin-top: 35px; }
+
+    /* position button styles */
+
+
+
+.g1menu {
+   color: goldenrod;
+   border-color: white; 
+   margin-left: 2px;
+}
+
+
+.g1copy { 
+   color: dodgerblue;
+   border-color: white; 
+}
+
+
+.g2pay {
+   color: red;
+   border-color: white; 
+}
+
+.g3adjust {
+   color: yellow;
+   border-color: white; 
+}
+
+.g4stay {
+   color: lightgreen;
+   border-color: white; 
+}
+
+
+.g4 {
+   color: lightgreen;
+   border-color: white; 
+}
+
+
+.g4focus {
+   color: burlywood;
+   border-color: white; 
+}
+
+
+.g4top {
+   color: lightgreen;
+   border-color: white; 
+}
+
+
+.g4mid {
+   color: burlywood;
+   border-color: white; 
+}
+
+
+.g4bot {
+   color: lightcoral;
+   border-color: white; 
+}
+
+
+.g4focus {
+   color: burlywood;
+   border-color: white; 
+}
+
+
+
+.g5new {
+   color: aqua;
+   border-color: white; 
+}
+
+
+
+
+.g5act1 {
+   color: burlywood;
+   border-color: white; 
+}
+
+
+.g5act2 {
+   color: burlywood;
+   border-color: white; 
+}
+ 
+
+</style>
+ 
+
+<body>
+
+<div class="container" id="historyscree"> 
+
+<h4 class="ps burleywood">Claim History</h4>
+
+ <form action="/historynext" accept-charset="UTF-8" method="post">  
+ 
+<%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>
+ 
+ <input name="_method" type="hidden" value="patch" /> 
+ 
+
+  <%=  @claims.each do | claim | %> 
+
+      <!-- Positioning --> 
+
+      <% if claim.PaymentAction.index("top") != nil %>
+        <div id="top"  name="atop"></div>
+      <% end %>
+       <% if claim.PaymentAction.index("mid") != nil %>
+        <div id="mid"  name="amid"></div>
+      <% end %>
+      <% if claim.PaymentAction.index("bot") != nil %>
+        <div id="bot" name="abot"></div>
+      <% end %> 
+      <% if claim.PaymentAction.index("act1") != nil %>
+        <div id="act1" name="aact1"></div>
+      <% end %>
+        <% if claim.PaymentAction.index("act2") != nil %>
+        <div id="act2" name="aact2"></div>
+      <% end %>
+
+       <!-- for payment same claim numbers -->
+       <% if claim.PaymentAction.index("act3") != nil %>
+        <div id="act1" name="aact1"></div> 
+        <div id="act2" name="aact2"></div>
+       <% end %>
+
+     <div class="row top">
+          <div class="col-md-4 white ft"> 
+              Claim  
+          </div>
+          
+          <div class="col-md-4 white ft"> 
+                Description   
+         </div>
+          <div class="col-md-2 white ft"> 
+              Claim Type
+          </div>
+          <div class="col-md-2 white ft"> 
+                Status
+          </div>
+    </div>
+
+    <div class="row">
+         <div class="col-md-4 burleywood ft"> 
+              <%= claim.ClaimIdNumber %>   
+          </div>
+          
+          <div class="col-md-4 burleywood ft"> 
+              <%= claim.ClaimDescription  %> 
+         </div>
+          
+         <div class="col-md-2 burleywood ft"> 
+              <% if claim.ClaimType == "m" %>
+                    Medical
+              <% end %>
+              <% if claim.ClaimType == "d" %>
+                    Dental
+              <% end %>
+              <% if claim.ClaimType == "v" %>
+                    Vision
+              <% end %>
+              <% if claim.ClaimType == "x" %>
+                    Drug
+              <% end %> 
+          </div>
+          <div class="col-md-2 burleywood ft"> 
+              <%= claim.ClaimStatus  %>   
+          </div>
+    </div>  
+
+       <div class="row space">
+          <div class="col-md-4 white ft"> 
+              Patient First Name
+          </div>
+          <div class="col-md-4 white ft"> 
+              Patient Last Name
+          </div> 
+    </div>
+
+    <div class="row">
+         <div class="col-md-4 burleywood ft"> 
+              <%= claim.PatientFirst %>   
+          </div>
+          <div class="col-md-4 burleywood ft"> 
+              <%= claim.PatientLast %>   
+          </div> 
+     </div>  
+
+     <div class="row space">
+          <div class="col-md-4 white ft"> 
+              Service
+          </div>
+          <div class="col-md-4 white ft"> 
+              Service Date
+          </div> 
+           <div class="col-md-2 white ft"> 
+              Plan Id
+          </div> 
+           <div class="col-md-2 white ft"> 
+              Seq
+          </div> 
+       
+    </div>
+
+     <div class="row">
+         <div class="col-md-4 burleywood ft"> 
+              <%= claim.Service %>   
+          </div>
+          <div class="col-md-4 blue ft"> 
+              <%= claim.DateService  %>   
+          </div> 
+           <div class="col-md-2 blue ft"> 
+              <%= claim.PlanId %>   
+          </div> 
+            <div class="col-md-2 burleywood ft">
+              <!-- 'AppAdjusting' holds count for the history screen only not stored on db. --> 
+              <%= claim.AppAdjusting %>  
+          </div> 
+     </div>   
+     
+
+    <div class="row space">
+          <div class="col-md-4 white ft"> 
+              Diagnosis 1
+          </div>
+          <div class="col-md-4 white ft"> 
+              Diagnosis 2
+          </div> 
+             
+    </div>
+
+    <div class="row">
+         <div class="col-md-4 burleywood ft"> 
+              <%= claim.Diagnosis1 %>   
+          </div>
+          <div class="col-md-4 burleywood ft"> 
+              <%= claim.Diagnosis2 %>   
+          </div>   
+     </div>  
+
+      <div class="row space">
+          <div class="col-md-4 white ft"> 
+              Procedure 1
+          </div>
+          <div class="col-md-4 white ft"> 
+              Procedure 2
+          </div> 
+    </div>
+
+    <div class="row">
+         <div class="col-md-4 burleywood ft"> 
+              <%= claim.Procedure1 %>   
+          </div>
+          <div class="col-md-4 burleywood ft"> 
+              <%= claim.Procedure2 %>   
+          </div> 
+     </div>  
+
+     
+     <div class="row space">
+         <div class="col-md-4 white ft"> 
+              Physician
+          </div>
+           <div class="col-md-4 white ft"> 
+              Clinic
+          </div>
+             <div class="col-md-3 white ft"> 
+              Referral
+          </div>
+         
+    </div>
+
+    <div class="row">
+         <div class="col-md-4 burleywood ft"> 
+              <%= claim.Physician %>   
+          </div>
+           <div class="col-md-4 burleywood ft"> 
+              <%= claim.Clinic %>   
+          </div>
+           <div class="col-md-4 burleywood ft"> 
+              <%= claim.Referral %>   
+          </div> 
+     </div>   
+     
+     <div class="row space">
+           <div class="col-md-4 white ft"> 
+              Total  
+          </div>
+           <div class="col-md-4 white ft"> 
+              Covered  
+          </div>
+          <div class="col-md-4 white ft"> 
+              Balance 
+          </div> 
+    </div> 
+    
+    <div class="row">
+         <div class="col-md-4 burleywood ft"> 
+              <%= '$ ' + claim.TotalCharge.to_s %>   
+          </div>
+           <div class="col-md-4 burleywood ft"> 
+              <%= '$ ' + claim.CoveredAmount.to_s %>   
+          </div>
+          <div class="col-md-34 burleywood ft"> 
+              &nbsp;<%= '$ ' + claim.BalanceOwed.to_s %>   
+          </div> 
+     </div>  
+ 
+
+       <% if claim.ClaimStatus == "Paid" %>
+
+             <div class="row">
+            
+                    <div class="col-md-4 white ft"> 
+                        Payment Amount:
+                    </div> 
+                     <div class="col-md-4 white ft"> 
+                        Payment Date:
+                    </div> 
+            </div>
+
+            <div class="row">  
+                <div class="col-md-4 burleywood ft"> 
+                    <%= '$ ' + claim.PaymentAmount.to_s %>   
+                </div>
+                <div class="col-md-34 burleywood ft"> 
+                    <%= claim.PaymentDate %>   
+                </div>  
+            </div>  
+
+      <% end %> 
+
+    
+    <div class="row">
+    
+        <% if claim.ClaimType == "m" %>
+     
+            <% if claim.DateConfine  != "" %>
+            <div class="col-md-4 white ft"> 
+                Confine  
+            </div>
+            <% end %>
+
+            <% if claim.DateRelease != ""  %>
+                <div class="col-md-4 white ft"> 
+                    Released  
+                </div>  
+            <% end %>
+
+        <% end %>
+ 
+        
+        <% if claim.ClaimType == "d" %>
+              <div class="col-md-4 white ft"> 
+                    Tooth Number  
+             </div>  
+        <% end %>
+
+        <% if claim.ClaimType == "v" %>
+                 <div class="col-md-4 white ft"> 
+                    Eyeware  
+                </div>  
+        <% end %> 
+        
+        <% if claim.ClaimType == "x" %>
+                 <div class="col-md-4 white ft"> 
+                    Drug Name  
+                </div>  
+        <% end %>
+
+
+    </div>
+ 
+    
+      <div class="row">
+    
+        <% if claim.ClaimType == "m" %>
+                <% if claim.DateConfine != "" %>
+                        <div class="col-md-4 burleywood ft"> 
+                            <%= claim.DateConfine  %>   
+                        </div>
+                <% end %>
+
+                <% if claim.DateRelease != "" %>
+                        <div class="col-md-4 burleywood ft"> 
+                            <%= claim.DateRelease  %>   
+                        </div>
+                <% end %>
+          <% end %>
+
+         <% if claim.ClaimType == "d" %>
+            <div class="col-md-4 burleywood ft"> 
+                <%= claim.ToothNumber %>   
+            </div>
+         <% end %>
+
+          
+         <% if claim.ClaimType == "v" %>
+            <div class="col-md-4 burleywood ft"> 
+                <%= claim.Eyeware %>   
+            </div>
+         <% end %>
+
+         
+         <% if claim.ClaimType == "x" %>
+             <div class="col-md-4 burleywood ft"> 
+                <%= claim.DrugName %>   
+            </div>
+         <% end %>
+          
+     </div>  
+
+     <% if claim.AdjustedClaimId != nil && claim.AdjustedClaimId.strip != ""  %>
+
+                <div class="row"> 
+                    <div class="col-md-4 white ft"> 
+                        Adjustment
+                    </div>
+                    <div class="col-md-4 white ft"> 
+                        Date 
+                    </div>  
+                  
+                </div> 
+
+                <div class="row">  
+                        <div class="col-md-4 burleywood ft"> 
+                            <%= claim.AdjustedClaimId %>   
+                        </div>
+                        <div class="col-md-34 burleywood ft"> 
+                            <%= claim.DateAdded  %>   
+                        </div> 
+                             
+                </div>
+          
+       <% end %> 
+
+        <% if claim.AdjustingClaimId != nil && claim.AdjustingClaimId.strip != ""  %>
+           
+           <div class="row">
+            
+                    <div class="col-md-4 white ft"> 
+                        Adjusted
+                    </div>
+                    <div class="col-md-4 white ft"> 
+                        Date 
+                    </div>  
+            </div> 
+
+            <div class="row">  
+                        <div class="col-md-4 burleywood ft"> 
+                            <%= claim.AdjustingClaimId %>   
+                        </div>
+                        <div class="col-md-34 burleywood ft"> 
+                            <%= claim.AdjustedDate  %>   
+                        </div>  
+             </div>
+
+        <% end %> 
+
+    
+
+     <div id="actionrow" class="btnrow">
+
+        <button type="submit" name="commit" class="g1menu f1 btn btn-primary-outline" value="Menu">Menu</button> 
+
+          <% if claim.ClaimStatus != "Adjusted" && claim.ClaimStatus != "Paid" %>
+        
+            <button type="submit" name="commit" class="g3adjust a1 f1 btn btn-primary-outlinw" value="<%= claim.ClaimIdNumber %>">Adjust</button> 
+
+         <% end %> 
+        
+         <% if claim.ClaimStatus != "Adjusted" && claim.ClaimStatus != "Paid" %>
+
+            <button type="submit" name="commit" class="g2pay a1 f1 btn btn-primary-outline" value="<%= "Pay" + claim.ClaimIdNumber %>">Pay</button>
+
+         <% end %> 
+ 
+        <button type="submit" name="commit" class="g5new a1 f1 btn btn-primary-outline" value="Claim">Claim</button>
+         
+
+        <button type="submit" name="commit" class="burleywood g1copy a1 f1 btn btn-primary-outline" value="<%= "Copy" + claim.ClaimIdNumber %>">Copy</button>
+              
+
+        
+        <!-- clickable positioning buttons -->
+         
+        <a type="button" name="top" class="g4top a1 f1 btn btn-primary-outline" 
+                    href="#top"
+                    value="Top">Top</a>
+    
+
+        
+        <a type="button" name="mid" class="g4mid a1 f1 btn btn-primary-outline" 
+                    href="#mid"
+                    value="Mid">Mid</a>
+        
+
+        
+        <a type="button" name="bot" class="g4bot a1 f1 btn btn-primary-outline" 
+                    href="#bot"
+                    value="Bot">Bot</a>
+         
+
+
+        <% if @showButton1 == "Yes" %> 
+        
+              <a type="button" name="commit" class="g5act1 a1 f1 btn btn-primary-outline" 
+                      id="act1btn"
+                      href="#act1"
+                      value="<%= @clm1 %>"><%= @act1 %></a>
+            
+        <% end %>
+
+         <% if @showButton2 == "Yes" %>
+
+              <a type="button" name="commit" class="g5act2 a1 f1 btn btn-primary-outline" 
+                      id="act2btn"
+                      href="#act2"
+                      value="<%= @clm2 %>"><%= @act2 %></a>
+            
+        <% end %>
+
+
+     </div> 
+ 
+ <% end %>
+
+</form>
+
+</div> 
+ 
+</body>

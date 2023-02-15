@@ -1,0 +1,307 @@
+
+<style>
+
+    body { background-color: black; } 
+
+    label { color: dodgerblue;  font-size: larger; font-family: arial; margin-top: 4px;
+                     margin-left: 10px; background-color: black; border-color: black;} 
+    
+    .input { margin-left: 10px;  font-size: larger; font-family: arial; } 
+    
+    select  {padding-top: 4px; padding-bottom: 6px;
+            margin-left: 10px;  font-size: large; font-family: arial; 
+            padding-left: 5px ; padding-right: 5px;
+            width: 35px; }
+
+    .hide { display: none;}
+   
+.a1 { margin-bottom: 5px; margin-left: 1px; }  
+
+.a2 {  margin-left: 20px; border-radius: 10px; padding-left: 30px; 
+       padding-right: 25px; margin-top: 40px; }
+ 
+/*-- from A40 buttons */
+
+.st1 { font-family: Arial;
+    font-size: larger }
+
+.title { margin-left: 350px; }
+
+
+.btn-medical { color: brown; background: pink}
+
+.btn-dental { color: darkblue; background: aqua}
+
+.btn-vision { color: brown; background: burlywood}
+
+.btn-drug { color: white; background: green}
+
+/* java script applies subleft1,2, to buttons */
+
+.subleft1 {margin-left: 20px; font-size: larger;} 
+
+.subleft2 {margin-left: 40px; font-size: larger;}
+
+.message {margin-top: 20px; font-size: larger; font-family: arial; color: white;}
+
+#buttondiv { margin-top: 30px;}
+
+
+.subleft1 {margin-left: 20px; font-size: larger;} 
+
+.subleft2 {margin-left: 40px; font-size: larger;}
+ 
+
+</style>
+
+<script>
+
+
+</script>
+
+<!-- design add 3 rows with submit button to update customer record in the controller -->
+<!-- see cust update for items relating to patch -->
+
+
+<body>
+
+<div class="container">
+
+<h2 id="addclaim" class="title burleywood">Add Claim</h2>  
+
+<form action="/claimadd" accept-charset="UTF-8" method="post">  
+
+
+<input name="_method" type="hidden" value="patch"> 
+
+<%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %> 
+
+  
+  
+  
+    <div class="row"> 
+
+                <div class="col-md-2" style="margin-top: 70px;">  
+
+
+                       <button class="st1 btn btn-primary a1" 
+                                name="commit"
+                                type="submit"
+                                value="Medical">
+                                Medical 
+                        </button>
+                        
+                        <button class="st1 btn btn-info a1"
+                                name="commit"
+                                type="submit"
+                                value="Dental"> 
+                                Dental &nbsp;
+                        </button>
+                        
+                        <button class="st1 btn btn-warning a1"
+                                name="commit"
+                                type="submit"
+                                value="Vision"> 
+                                Vision &nbsp;
+                        </button>
+                        
+                        <button class="st1 btn btn-success a1"  
+                                 name="commit"
+                                 type="submit"
+                                 value="Drug"> 
+                                 Drug &nbsp; &nbsp;
+                        </button>
+
+                     
+             </div> 
+
+
+             <div class="col-md-10">   
+                                
+                <div class="row"><br></div>   
+
+    <div class="form-group row">
+
+       <div class="col-xs-2 a1">
+            <label class="control-label" for="first">Patient First:</label>
+            <br/><input class="form-control" type="text" value="<%= @PatientFirst %>" name="claim[PatientFirst]" id="first"> 
+       </div>
+
+       <div class="col-xs-2 a1">
+            <label class="control-label" for="last">Patient Last:</label>
+            <br/><input class="form-control" type="text" value="<%= @PatientLast %>" name="claim[PatientLast]" id="last"> 
+       </div>
+
+       <div class="col-xs-2 a1">
+            <label class="control-label" for="description">Description:</label>
+            <br/><input class="form-control" type="text" value="<%= @ClaimDescription %>" name="claim[ClaimDescription]" id="description"> 
+        </div>
+
+    </div>
+
+
+    <div class="form-group row">
+
+        <div class="col-xs-2 a1">
+            <label class="control-label" for="phys">Physician:</label>
+            <br/><input class="form-control" type="text" value="<%= @Physician %>" name="claim[Physician]" id="phys"> 
+        </div>
+
+        <div class="col-xs-2 a1">
+            <label class="control-label" for="clinic">Clinic:</label>
+            <br/><input class="form-control" type="text" value="<%= @Clinic %>" name="claim[Clinic]" id="clinic"> 
+        </div> 
+
+        <div class="col-xs-2 a1">
+        <label class="control-label" for="service"><%= @ClaimTypeLiteral %></label></br>
+            <select  class="form-control" id="service" name="claim[service]">
+                <%= @serviceList.each do | s | %> 
+                    <% if s['Selected'] == "Yes" %> 
+                       <option selected value="<%= s['ServiceName'] %>"><%= s['ServiceName'] %></option>
+                    <% end %> 
+                    <% if s['Selected'] == "No" %> 
+                       <option value="<%= s['ServiceName'] %>"><%= s['ServiceName'] %></option>
+                    <% end %> 
+                <% end %>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="diag1">Diagnosis1:</label>
+         <br/><input class="form-control" type="text" value="<%= @Diagnosis1 %>" name="claim[Diagnosis1]" id="diag1"> 
+    </div>
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="diag2">Diagnosis2:</label>
+         <br/><input class="form-control" type="text" value="<%= @Diagnosis2 %>" name="claim[Diagnosis2]" id="diag2"> 
+    </div>
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="dateservice">Date Service:</label>
+         <br/><input class="form-control" type="date" value="<%= @DateService %>" name="claim[DateService]" id="dateservice"> 
+     </div>
+
+    </div>
+
+    <div class="form-group row">
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="proc1">Procedure1:</label>
+         <br/><input class="form-control" type="text" value="<%= @Procedure1 %>" name="claim[Procedure1]" id="proc1"> 
+    </div>
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="proc2">Procedure2:</label>
+         <br/><input class="form-control" type="text" value="<%= @Procedure2 %>" name="claim[Procedure2]" id="proc2"> 
+    </div>
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="ref">Referral:</label>
+         <br/><input class="form-control" type="text" value="<%= @Referral %>" name="claim[Referral]" id="ref"> 
+     </div>
+
+    </div>
+ 
+
+    <% if @ClaimType == "m" %>
+
+        <div class="form-group row">
+
+            <div class="col-xs-2 a1">
+                <label class="control-label" for="conf">Confine Date:</label>
+                <br/><input class="form-control" type="date" value="<%= @DateConfine %>" name="claim[DateConfine]" id="conf"> 
+            </div>
+
+            <div class="col-xs-2 a1">
+                <label class="control-label" for="reld">Release Date:</label>
+                <br/><input class="form-control" type="date" value="<%= @DateRelease %>" name="claim[DateRelease]" id="reld"> 
+            </div> 
+
+           
+            
+        </div>
+
+    <% end %>
+
+    <% if @ClaimType == "d" %>
+
+        <div class="form-group row">
+
+            <div class="col-xs-2 a1">
+                <label class="control-label" for="tooth">Tooth Number:</label>
+                <br/><input class="form-control" type="text" value="<%= @ToothNumber %>" name="claim[ToothNumber]" id="tooth"> 
+            </div> 
+ 
+            
+        </div>
+
+    <% end %>
+
+    <% if @ClaimType == "v" %>
+
+        <div class="form-group row">
+
+            <div class="col-xs-2 a1">
+                <label class="control-label" for="eyew">Eyeware:</label>
+                <br/><input class="form-control" type="text" value="<%= @Eyeware %>" name="claim[Eyeware]" id="eyew"> 
+            </div> 
+
+           
+            
+        </div>
+
+    <% end %>
+
+    <% if @ClaimType == "x" %>
+
+    <div class="form-group row">
+
+        <div class="col-xs-2 a1">
+            <label class="control-label" for="drug">Drug Name:</label>
+            <br/><input class="form-control" type="text" value="<%= @DrugName %>" name="claim[DrugName]" id="drug"> 
+        </div>  
+        
+    </div>
+
+   <% end %>
+
+   <div class="form-group row"> 
+
+        <button type="submit" name="commit" value="Add Claim" class="btn btn-primary subleft1">Add Claim</button>
+        
+        <button type="submit" name="commit" value="Menu" class="btn btn-primary subleft2">Menu</button> 
+        
+        <button type="submit" name="commit" value="History" class="btn btn-primary subleft2">History</button>
+
+        <% if @planButton == "yes" %> 
+        
+            <button type="submit" name="commit"  value="Plan" class="btn btn-primary subleft2">Plan</button>
+
+        <% end %> 
+
+   </div>
+
+   <div class="form-group row"> 
+        <div>
+            <label class="message control-label"><%= @message %></label>
+        </div> 
+   </div>
+
+
+    </div> <!-- end right column -->
+    </div> <!-- end of big row -->
+
+    
+  <div style="display:none">
+      <input name="ClaimTypeLetter" value="<%= @ClaimTypeLetter %>" type="text">
+  </div>
+
+    </div> <!-- end form -->
+    </div> <!-- end container --> 
+ 
+
+    </body>

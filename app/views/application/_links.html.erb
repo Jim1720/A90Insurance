@@ -1,0 +1,94 @@
+ 
+ <style>
+
+    .b3 {font-size: x-large; font-family: arial;}
+
+    a:hover { color: gold;} 
+
+    .white-bottom-line { border-bottom: 1px white solid }
+
+    .aqua { color: aqua; }
+
+    .stick { position: sticky;  top: 0; width:100% ; z-index: 1}
+
+ </style>
+ 
+ <!-- div class="container" remove to fill gray bar to top to edge of browser.>
+          t60 march 19  a40 april 30 nav stuf on ul .--> 
+    <ul class="stick navbar navbar-dark bg-dark white-bottom-line" width="100%">
+    <!--nav class="navbar white-bottom-line navbar-expand-sm navbar-toggleable-sm mb-3"--> 
+       
+                
+                 <% if session[:signin] != "yes"  %>
+
+               <li><a class="navbar-brand" 
+                         style="color: aqua; "
+                         href="#"
+                         style="font-family:arial; font-size:x-large;"> 
+                         A90Insurance </a>
+               </li> 
+ 
+                <li style="margin-left: 50px;" class="nav-item">
+                     <a href="/home/start" class="b3 nav-link text-light">Start</a>
+                </li>
+                 <li style="margin-left: 70px;" class="nav-item">
+                     <a href="/classic" class="b3 nav-link text-light">Classic</a>
+                </li> 
+                 <li style="margin-left: 70px" class="nav-item">
+                     <a href="/register" class="b3 nav-link text-light">Register</a>
+                </li>
+                 <li style="margin-left: 70px" class="nav-item">
+                     <a href="/signin" class="b3 nav-link text-light">Sign In</a>
+                </li>
+                <li style="margin-left: 70px" class="nav-item">
+                     <a href="/about" class="b3 nav-link text-light">About</a>
+                </li>
+                <li style="margin-left: 70px" class="nav-item">
+                     <a href="/admin" class="b3 nav-link text-light">Admin</a>
+                </li>
+            
+
+            <% end %>
+
+
+            <!-- signed in links -->
+
+              <% if session[:signin] == "yes"  %>
+
+              <!-- margin left at 20 until get top bar expanded on signin status. -->
+
+               <li><a class="burleywood" 
+                         href="#"
+                         style="font-family:arial; font-size:x-large;"> 
+                         A90Insurance </a>
+               </li> 
+
+                <li style="margin-left: 20px" class="nav-item">
+                     <a href="/menu" class="b3 nav-link text-light">Menu</a>
+                </li> 
+                <!-- point to menu not active yet -->
+                
+                <li style="margin-left: 20px" class="nav-item">
+                     <a href="/update" class="b3 nav-link text-light">Update</a>
+                </li>
+                 
+                 <li style="margin-left: 20px" class="nav-item">
+                     <a href="/claim" class="b3 nav-link text-light">Claim</a>
+                </li> 
+                 <li style="margin-left: 20px" class="nav-item">
+                     <a href="/history" class="b3 nav-link text-light">History</a>
+                </li> 
+                 <li style="margin-left: 20px" class="nav-item">
+                     <a href="/signout" class="b3 nav-link text-light">Sign Out</a>
+                </li> 
+                 <li style="margin-left: 20px" class="nav-item">
+                     <a href="/update" class="burleywood b3">Customer: <%= session[:custId] %></a>
+                </li> 
+
+           
+
+              <% end %>
+
+    </ul>
+
+ <!--/div -- remove container to fill link bar at top to screen edges.>

@@ -1,0 +1,103 @@
+
+<style>
+
+    
+    h1 { color: white; }
+
+    body { background-color: black; }  
+
+    #center { margin-left: 30%; margin-top: 50px; } 
+ 
+
+    .ba { color: white; background-color: dodgerblue; border-radius: 10px; padding: 5px;
+          font-family: arial: font-size: large; margin-top: 20px; margin-bottom: 20px; }
+
+          
+    .ba2 { color: white;  background-color: green; border-radius: 10px; padding: 5px;
+          font-family: arial: font-size: large; margin-top: 20px; margin-bottom: 20px; }
+    
+    .lit { color: white; font-family: arial; font-size: larger; margin-top: 20px; }
+
+    .ps { margin-left: 370px; margin-bottom: 50px; font-family: arial; font-size: x-large; }
+
+    .burleywood { color: burleywood; }
+
+    .white { color: white; }
+
+    .aqua { color: aqua; }
+
+    .space { margin-top: 10px; }
+
+    .blue { color: dodgerblue;}
+
+    .ft { font-size: larger; font-family: arial;}
+
+    .top { margin-top: 20px;}
+
+    .a1 { margin-left: 30px; }
+
+    .f1 { font-family: arial; font-size: larger;}
+
+    .btnrow { margin-top: 35px; } 
+
+</style>
+ 
+
+<body>
+
+<div class="container" id="customerlist"> 
+
+<h4 class="ps burleywood">Customer List</h4>
+
+<div class="row top">
+<div class="col-md-3 white ft"> 
+    Customer Id  
+</div>
+
+<div class="col-md-3 white ft"> 
+    Name   
+</div>
+<div class="col-md-3 white ft"> 
+    Password
+</div> 
+<div class="col-md-2 white ft"> 
+    Application
+</div> 
+</div>
+ 
+<div>
+  <%=  @customerList.each do | customer | %>   
+
+    <div class="row" style="margin-top: 10px">
+         <div class="col-md-3 burleywood ft"> 
+              <%= customer.custId %>   
+          </div>
+          
+          <div class="col-md-3 burleywood ft"> 
+              <%= customer.custFirst  %>   <%= customer.custLast  %> 
+         </div>
+
+         <div class="col-md-3 burleywood ft"> 
+             hidden
+         </div> 
+
+         <div class="col-md-2 burleywood ft"> 
+             <%= customer.appId  %> 
+         </div> 
+
+    </div>   
+
+    <% if customer.extendColors == "yes" %> 
+        <div id="bottombuttons" style="margin-left: 430px; margin-top: 25px;"> 
+             <a type="button" class="ft btn btn-primary" href="action">Return</a> 
+        </div>  
+    <% end %> 
+ 
+ <% end %>
+
+ </div>
+
+ 
+</div> 
+ 
+</body>

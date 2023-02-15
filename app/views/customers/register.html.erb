@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<style>
+
+body { background-color: black; }
+
+.left { margin-left: 32%}
+
+label { color: dodgerblue; font-family: arial; font-size: larger;} 
+
+
+.msg { color: white; font-family: arial; font-size: larger;} 
+
+input { color: white; font-family: arial; font-size: larger;}
+
+.a1 { margin-left: 1px;}
+
+
+.a2 {  margin-top: 30px; margin-left: 440px; border-radius: 10px; padding-left: 25px; 
+       padding-right: 25px; }
+
+#center { margin-left: 20%; margin-top: 50px; }
+
+.white { color: white; }
+
+</style>
+ 
+ <body> 
+
+ <div class="container">
+
+ <h1 class="left burleywood">Customer Registration</h1>
+
+ <div id="center">
+
+ <div id="namerow" class="row">
+ 
+
+ <form action="/customers" accept-charset="UTF-8" method="post"> 
+ 
+ <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %> 
+
+ <div class="form-group row">
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_id">Customer Id:</label>
+         <br/><input class="form-control" type="text" value="<%= @custId %>" name="customer[custId]" id="customer_id"> 
+   </div>
+
+     <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_password">Password:</label>
+         <br><input class="form-control" type="password"
+              value="<%= @password %>"
+              name="customer[custPassword]" id="customer_password"> 
+   </div>
+
+     <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_confirm">Confirm:</label>
+         <br><input class="form-control" type="password" 
+              value="<%= @confirm %>"
+              name="customer[Encrypted]" id="customer_confirm"> 
+   </div>
+ 
+
+</div>
+
+ <div class="form-group row">
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_first">First Name:</label>
+         <br><input class="form-control" type="text" value="<%= @custFirst %>" name="customer[custFirst]" id="customer_first"> 
+   </div>
+
+     <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_middle">Middle:</label>
+         <br><input class="form-control" type="text" value="<%= @custMiddle %>" name="customer[custMiddle]" id="customer_middle"> 
+   </div>
+
+
+     <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_last">Last:</label>
+         <br><input class="form-control" type="text" value="<%= @custLast %>" name="customer[custLast]" id="customer_last"> 
+   </div>
+
+    <div class="col-xs-2 a1">
+
+    
+         <label class="control-label" for="customer_birth">Birth Date:</label>
+         <br><input class="form-control" type="date"  value="<%= @custBirthDate %>" name="customer[custBirthDate]" id="customer_birth"> 
+   </div>
+
+   </div>
+
+    <div class="form-group row">
+
+        <div class="col-xs-2 a1">
+            <label class="control-label" for="addr1">Address 1:</label>
+            <br><input class="form-control" type="text"  value="<%= @custAddr1 %>" name="customer[custAddr1]" id="addr1"> 
+      </div>
+
+        <div class="col-xs-2 a1">
+            <label class="control-label" for="addr2">Address 2:</label>
+            <br><input class="form-control" type="text" value="<%= @custAddr2 %>"  name="customer[custAddr2]" id="addr2"> 
+      </div> 
+
+        <!--div class="col-sm-1 a1">
+            <label class="control-label" for="gender">Gender:</label>
+            <br><input class="form-control" type="text" value="<%= @custGender %>"  name="customer[custGender]" id="gender"> 
+      </div--> 
+
+       <div class="col-xs-2 a1">
+            <label class="control-label" for="gender">Gender:</label>
+            <br>
+              <select class="form-control" name="customer[custGender]" id="gender">
+                <% @genders.each do | s | %>
+                <% selected = "" %>
+                <% if s == @customer.custGender %>
+                    <% selected = "selected" %>
+                <% end %>
+                     <option <%= selected %> value="<%= s %>"><%= s %></option>  
+                <% end %>
+             </select>
+      </div> 
+
+   </div>
+
+    <div class="form-group row">
+
+        <div class="col-xs-2 a1">
+            <label class="control-label" for="phone">Phone Number:</label>
+            <br><input class="form-control" type="text" value="<%= @custPhone %>"  name="customer[custPhone]" id="phone"> 
+      </div>
+
+        <div class="col-xs-2 a1">
+            <label class="control-label" for="email">e-mail:</label>
+            <br><input class="form-control" type="text" value="<%= @custEmail %>"  name="customer[custEmail]" id="email"> 
+      </div>  
+
+   </div>
+
+   <div class="form-group row">
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_city">City:</label>
+         <br><input class="form-control" type="text" value="<%= @custCity %>" name="customer[custCity]" id="customer_city"> 
+   </div>
+
+     <!--div class="col-xs-2 a1">
+         <label class="control-label" for="customer_state">State:</label>
+         <br><input class="form-control" type="text"  value="<%= @custState %>" name="customer[custState]" id="customer_state"> 
+   </div-->
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_state">State:</label>
+         <% if @states != nil %>
+         <br> 
+           <select class="form-control" name="customer[custState]" id="customer_state">  
+              <% @states.each do | s | %>
+                <% selected = "" %>
+                <% if s == @customer.custState %>
+                    <% selected = "selected" %>
+                <% end %>
+                     <option <%= selected %> value="<%= s %>"><%= s %></option>  
+                <% end %>
+          </select>
+          <% end %>
+   </div>
+
+  
+
+
+     <div class="col-xs-2 a1">
+         <label class="control-label" for="customer_zip">Zip:</label>
+         <br><input class="form-control" type="text"  value="<%= @custZip %>" name="customer[custZip]" id="customer_zip"> 
+   </div>
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="promo">Promotion Code:</label>
+         <br><input class="form-control" type="text" value="<%= @custPromo %>" name="customer[PromotionCode]" id="promo"> 
+   </div>
+
+</div>
+
+  <div>
+    <input class="btn-primary a2" type="submit" name="commit" value="Register" data-disable-with="Create Customer">
+  </div>
+
+  <div>
+      <label class="msg control-label"><%= @message %></label>
+  </div>
+
+</div> <!-- end center -->
+
+</form>
+
+ </div> 
+ </body>

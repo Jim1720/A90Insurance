@@ -1,0 +1,73 @@
+
+<style>
+
+    h1 { color: white; }
+
+    body { background-color: black; }  
+
+    #center { margin-left: 30%; margin-top: 50px; } 
+ 
+
+    .ba { color: white; background-color: dodgerblue; border-radius: 10px; padding: 5px;
+          font-family: arial: font-size: large; margin-top: 20px; margin-bottom: 20px; }
+
+          
+    .ba2 { color: white;  background-color: green; border-radius: 10px; padding: 5px;
+          font-family: arial: font-size: large; margin-top: 20px; margin-bottom: 20px; }
+    
+    .lit { color: white; font-family: arial; font-size: large; margin-top: 20px; }
+
+    .ps { margin-bottom: 50px; font-family: arial; font-size: x-large; }
+
+</style>
+
+<body>
+
+<div id="center">
+
+<h1 class="ps burleywood">Plan Selection</h1>
+
+ <form action="/plan" accept-charset="UTF-8" method="post">  
+ 
+<%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>
+ 
+ <input name="_method" type="hidden" value="patch" /> 
+ 
+ <% if @plans != nil  %>
+
+<ul>
+  <% @plans.each do | plan | %>
+
+    <li>
+        <span class="lit">
+            <%= plan['PlanLiteral'] %>
+       </span>
+    </li>
+
+    <li> 
+      <button name="commit" type="submit" 
+              class="btn btn-primary ba" 
+              value="<%= plan['PlanName'] %>">
+
+        <%= plan['PlanName'] %>  
+      </button> 
+    </li>
+ 
+
+  <% end %> 
+  
+  <% end %>
+
+     <li> 
+      <button type="submit" class="ba2" name="commit" value="Cancel">
+          Cancel 
+      </button> 
+    </li>
+
+    </ul>
+
+</form>
+
+</div>
+</body>
+ 

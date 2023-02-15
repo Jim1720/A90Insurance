@@ -1,0 +1,50 @@
+ 
+ 
+   
+
+ <style>
+
+    body { background-color: black;}
+
+    .r1 { border-radius: 10px; margin-left: 110px; margin-top: 20px; margin-bottom: 40px; }
+ 
+ 
+    .t1 { font-size: larger; margin-right: 8px; }\
+ 
+
+    .goldenrod { color: goldenrod; }
+
+    .skyblue { color: skyblue; }
+
+ </style>
+ 
+ 
+ 
+ <div class="container"> 
+
+    <div style='margin-left: 320px; margin-top: 10px;'>
+        <div class="row justify-content-left">
+            <div family="arial" font-size="60">
+                <h1 class="burleywood"> The Insurance Company</h1>
+            </div>
+        </div>
+    </div> 
+
+    <div class="row">   
+        <%= image_tag "rock.jpg",  class:"r1", alt: "rock", height: "500", width: "900" %>  
+    </div> 
+
+<footer  style="margin-left:20px "> 
+       <!-- a60 additions at bottom -->
+        <span style="color:white" class='t1'>A90Insurance Rails</span>
+       <span class='t1' style='color:gray;'>Info here</span> 
+       <a href="/info" class='t1' style="color: white">Information</a>
+       <span class='t1' style='color:gray;'>Find about here...</span>
+       <a href="/about" class='t1' style="color: white">About</a>
+       <span class='t1' style='color:gray;'>Time to buy...</span>
+       <a  href="register"class='t1' style="color: white"><%= @displayTime %></a> 
+   
+ </footer>
+    
+</div>
+

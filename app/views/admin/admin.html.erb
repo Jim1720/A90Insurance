@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<style>
+
+body { background-color: black; }
+
+.left { margin-left: 30%}
+
+label { color: dodgerblue; font-family: arial; font-size: larger;} 
+
+
+.msg { color: white; font-family: arial; font-size: larger;} 
+
+input { color: white; font-family: arial; font-size: larger;}
+
+.a1 { margin-left: 20px;}
+
+
+.a2 {  margin-top: 30px; margin-left: 65px; border-radius: 10px; padding-left: 25px; 
+       padding-right: 25px; }
+
+#center { margin-left: 35%; margin-top: 50px; }
+
+.white { color: white; }
+
+.m1 { margin-left: 02px; margin-top: 40px; }
+
+.skyblue { color: skyblue; }
+
+</style>
+  
+
+ <div class="container">
+
+ <h1 class="left burleywood">Administrator Sign In</h1> 
+
+ <form action="/adminsignin" accept-charset="UTF-8" method="post">
+  
+ 
+ <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %> 
+
+ <div id="center">
+
+ <div class="form-group row">
+
+    <div class="col-xs-2 a1">
+         <label class="control-label" for="admId">Customer Id:</label>
+         <br/><input class="form-control" type="text" name="admId" id="admId"> 
+    </div>
+ </div>
+  
+ <div class="form-group row">
+
+     <div class="col-xs-2 a1">
+         <label class="control-label" for="admPassword">Password:</label>
+         <br><input class="form-control" type="password" name="admPassword" id="admtPassword"> 
+     </div>
+
+</div>
+
+ <div class="form-group row"> 
+    <input class="btn-primary a2" type="submit" name="commit" value="Signin" data-disable-with="Signin">
+  
+</div>
+
+
+ <div class=" white form-group row">
+      <label class="msg m1 label control-label"><%= @message %></label>
+  </div>
+
+
+ </div> <!-- center -->
+
+</form>
+ 
+  

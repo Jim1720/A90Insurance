@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+
+<style>
+
+ body { background-color: black; }
+
+ .burleywood { color: burleywood; }
+
+ .b1 { margin-left: 100px;}
+ 
+ .st { font-size: larger; padding-left: 15px; padding-right: 15px; border-width: 1px; border-radius: 10px; }
+
+ .msg { color:white;  margin-left: 230px; margin-top: 60px;  font-size: larger; font-family: arial; }
+
+</style> 
+
+     <div class="container"> 
+
+    <div style='margin-left: 280px; margin-top: 10px;'>
+        <div class="row justify-content-left">
+            <font family="arial" font-size="60" class="burleywood">
+                <h2 display-2> The Insurance Company Main Menu</h2>
+            </font>
+        </div>
+    </div> 
+
+    <div class="row-md-6">  
+         <%= image_tag "rock.jpg", alt: "rock",  class:"r1 img-fluid", style:"margin: 10px" %> 
+    </div>
+
+    <div id="bottombuttons" style="margin-left: 180px; margin-top: 25px;">
+          <a type="button" class="st btn btn-primary"    href="update">Update</a> 
+          <a type="button" class="st b1 btn btn-primary" href="claim">Claim</a> 
+          <a type="button" class="st b1 btn btn-primary" href="history">History</a>  
+          <a type="button" class="st b1 btn btn-primary" href="plan">Plan</a>
+          <!-- go back to start - that controller will sign out -->
+          <a type="button" class="st b1 btn btn-primary" href="/signout">Sign Out</a>  
+    </div>
+
+ <br/>
+    <span class="msg">
+        <%= @message %>
+    </span>
+
+
+
+ 
